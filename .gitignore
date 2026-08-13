@@ -1,0 +1,6 @@
+.DS_Store
+.Rproj.user/
+/.quarto/
+*_files/
+*_cache/
+template.html

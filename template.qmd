@@ -1,0 +1,214 @@
+---
+title: "Presentation Title"
+subtitle: "Subtitle — Research Group · 2025"
+author: "Author Name"
+institute: "School of Something, The University of Melbourne"
+date: today
+date-format: "D MMMM YYYY"
+format: unimelb-revealjs
+---
+
+## Overview
+
+Today I will cover:
+
+- **Background** — motivation and research gap
+- **Methods** — data and analytical approach
+- **Results** — key findings
+- **Discussion** — implications and next steps
+
+---
+
+## Background {background-color="#000F46" .center}
+
+<!-- Dark navy section divider. Add .center to vertically centre content. -->
+
+---
+
+## Why This Matters
+
+Standard body text uses Lato. Use **bold** for emphasis and _italics_ for terms or titles.
+
+- First key point — a brief elaboration on the idea
+- Second key point — with supporting evidence or context
+- Third key point — implications for the field
+
+> Use blockquotes to highlight an important finding, quote, or definition that deserves emphasis.
+
+::: {.callout-note}
+**Callout blocks** are useful for caveats, definitions, or supplementary information.
+Four types available: `note`, `tip`, `warning`, `important`.
+:::
+
+---
+
+## Two-Column Layout
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**Left Column — Text or Bullets**
+
+Use the left for interpretation, context, or a numbered list:
+
+1. First finding
+2. Second finding
+3. Third finding
+
+[Highlighted text]{.hl} using the `.hl` inline span class.
+:::
+
+::: {.column width="45%"}
+**Right Column — Figure or Equation**
+
+Place a figure, equation, or summary table here.
+
+$$\hat{\beta} = (X^\top X)^{-1} X^\top y$$
+
+$$R^2 = 1 - \frac{\text{SS}_\text{res}}{\text{SS}_\text{tot}}$$
+:::
+
+::::
+
+---
+
+## Methods {background-color="#000F46" .center}
+
+---
+
+## Code — R Example
+
+```{.r}
+library(tidyverse)
+
+data |>
+  filter(year >= 2020) |>
+  group_by(region) |>
+  summarise(
+    mean_value = mean(outcome, na.rm = TRUE),
+    n          = n()
+  ) |>
+  ggplot(aes(region, mean_value, fill = region)) +
+  geom_col(width = 0.6) +
+  scale_fill_manual(
+    values = c("#000F46", "#00A9CE", "#47C8F0", "#8389A5")
+  ) +
+  labs(
+    title = "Mean Outcome by Region",
+    x = NULL, y = "Mean value"
+  ) +
+  theme_minimal(base_family = "Lato")
+```
+
+---
+
+## Code — Python Example
+
+```{.python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+UOM_PALETTE = ["#000F46", "#00A9CE", "#47C8F0", "#8389A5"]
+
+df = pd.read_csv("data.csv")
+
+fig, ax = plt.subplots(figsize=(8, 4))
+df.groupby("region")["outcome"].mean().plot(
+    kind="bar", ax=ax, color=UOM_PALETTE
+)
+ax.set_title("Mean Outcome by Region", fontsize=14)
+ax.set_xlabel("")
+plt.tight_layout()
+plt.savefig("fig_results.png", dpi=150, bbox_inches="tight")
+```
+
+---
+
+## Results {background-color="#000F46" .center}
+
+---
+
+## Results Summary {.smaller}
+
+<!-- Add {.smaller} to compress font size when fitting more content -->
+
+| Region | N   | Mean (SD)  | 95% CI       | *p*-value |
+|--------|-----|------------|--------------|-----------|
+| North  | 142 | 4.2 (1.1)  | [3.9, 4.5]   | —         |
+| South  | 138 | 3.8 (0.9)  | [3.6, 4.0]   | 0.003     |
+| East   | 156 | 4.5 (1.3)  | [4.2, 4.8]   | 0.024     |
+| West   | 129 | 3.6 (1.0)  | [3.4, 3.8]   | < 0.001   |
+
+: Summary of regional outcomes {tbl-colwidths="[15,8,18,18,15]"}
+
+::: {.callout-tip}
+**Interpretation:** Eastern region shows the highest mean outcome; all pairwise differences are statistically significant after Bonferroni correction.
+:::
+
+---
+
+## Figure Slide
+
+<!-- Replace the path below with your actual figure file -->
+
+![Figure caption — describe what the figure shows and its data source.](path/to/figure.png){fig-align="center" width="80%"}
+
+---
+
+## Discussion {background-color="#000F46" .center}
+
+---
+
+## Key Takeaways
+
+Summarise the three or four most important points from your talk.
+
+1. **First finding** — direct statement of the result and what it means.
+2. **Second finding** — direct statement of the result and what it means.
+3. **Third finding** — direct statement of the result and what it means.
+
+. . .
+
+<!-- The `. . .` creates a pause — content below appears on the next click -->
+
+::: {.callout-important}
+**Limitation:** Note any important caveats the audience should weigh when interpreting these results.
+:::
+
+---
+
+## Future Directions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Short term**
+
+- Extend dataset to include 2024
+- Validate model on held-out regions
+- Submit to *Journal Name*
+:::
+
+::: {.column width="50%"}
+**Longer term**
+
+- Operational deployment with CSIRO partner
+- Extend to multi-country comparison
+- Open-source the analysis pipeline
+:::
+
+::::
+
+---
+
+## Thank You {background-color="#000F46" .center}
+
+**Author Name**
+
+School of Something
+The University of Melbourne
+
+✉ author\@unimelb.edu.au &nbsp;·&nbsp; 🔗 [github.com/username](https://github.com/username)
+
+*This research was supported by [funding body / grant number].*
+```

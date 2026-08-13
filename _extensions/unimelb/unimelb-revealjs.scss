@@ -1,0 +1,481 @@
+/*-- scss:defaults --*/
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  UoM × CSIRO — RevealJS theme
+//
+//  COLOUR: every UoM value below is copied verbatim from the official
+//  University of Melbourne Design System (Gen 3, v15.13.0) CSS custom
+//  properties at designsystem.web.unimelb.edu.au. Token name in the comment.
+//  Do not hand-pick new blues — take them from that file.
+//
+//  Each blue has exactly one job:
+//    #000F46  Traditional Heritage navy — structure (headings, strap, th)
+//    #003F8B  UoM link blue             — links only
+//    #00A9CE  CSIRO Midday Blue         — the co-brand accent (rule, progress)
+//    #47C8F0  Laughing Kookaburra       — links/markers on dark grounds
+//
+//  Recurring motif: a 72×3px CSIRO-blue rule under the title-slide h1 and
+//  under every section-divider h2. It is the thread tying the deck together.
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ── Official UoM tokens ──────────────────────────────────────────────────────
+$uom-navy:        #000F46;  // brand-1100  Traditional Heritage (Blue)
+$uom-navy-deep:   #000B34;  // brand-1200  Traditional Heritage Dark
+$uom-navy-mid:    #212E5D;  // brand-900
+$uom-brand-500:   #8389A5;  // brand-500   muted brand tint
+$uom-brand-200:   #DDDFE7;  // brand-200
+$uom-brand-100:   #F3F3F6;  // brand-100   lightest brand tint
+
+$uom-link:        #003F8B;  // text-link
+$uom-link-hover:  #004EAD;  // text-link-hover
+
+$uom-kookaburra:  #47C8F0;  // blue-400    Laughing Kookaburra Light Blue
+$uom-kookaburra-m:#2F95B7;  // blue-500
+
+$uom-text:        #222222;  // text-primary / neutral-1000
+$uom-muted:       #707070;  // neutral-600
+$uom-hairline:    #E0E0E0;  // neutral-200
+$uom-tint:        #F4F4F4;  // neutral-100
+
+// ── CSIRO ────────────────────────────────────────────────────────────────────
+$csiro-blue:      #00A9CE;  // CSIRO Midday Blue — co-brand accent.
+                            // Not a UoM token; it carries the CSIRO half of the
+                            // lockup and sits naturally between blue-400/blue-500.
+
+// Shared geometry — one radius, one hairline, everywhere
+$brand-radius:   4px;
+$brand-hairline: 1px solid $uom-hairline;
+$accent-w:       72px;
+$accent-h:       3px;
+$strap-h:        90px;
+
+// ── Core RevealJS Variables ──────────────────────────────────────────────────
+$body-bg:                             #ffffff;
+$body-color:                          $uom-text;
+$link-color:                          $uom-link;
+$link-color-hover:                    $uom-link-hover;
+$selection-bg-color:                  $uom-brand-200;
+$selection-color:                     $uom-navy;
+
+$presentation-font-size-root:         32px;
+$presentation-line-height:            1.55;
+$presentation-block-margin:           14px;
+$presentation-slide-text-align:       left;
+$presentation-title-slide-text-align: center;
+
+// Fonts — LaTeX-compatible aesthetic
+$presentation-heading-font:           'EB Garamond', Georgia, 'Times New Roman', serif;
+$presentation-heading-color:          $uom-navy;
+$presentation-heading-font-weight:    400;
+$presentation-heading-text-transform: none;
+$presentation-heading-line-height:    1.18;
+$presentation-heading-letter-spacing: -0.01em;
+
+$font-family-sans-serif:              'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-monospace:               'Source Code Pro', 'Courier New', Courier, monospace;
+
+$presentation-h1-font-size:           2.15em;
+$presentation-h2-font-size:           1.35em;
+$presentation-h3-font-size:           1.05em;
+$presentation-h4-font-size:           0.9em;
+
+$code-color: $uom-text;
+$code-bg:    $uom-tint;
+
+/*-- scss:rules --*/
+
+// ── The accent rule motif ────────────────────────────────────────────────────
+@mixin accent-rule($align: left) {
+  position: relative;
+  padding-bottom: 0.42em;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: $accent-w;
+    height: $accent-h;
+    background: $csiro-blue;
+    border-radius: 2px;
+
+    @if $align == center {
+      left: 50%;
+      transform: translateX(-50%);
+    } @else {
+      left: 0;
+    }
+  }
+}
+
+// ── Title Slide ──────────────────────────────────────────────────────────────
+// White ground, navy strap pinned to the viewport bottom.
+.reveal .slides section#title-slide {
+  // Drop the centred block clear of the strap along the top
+  padding-top: 3em;
+
+  h1.title {
+    @include accent-rule(center);
+    color: $uom-navy;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom: 0.55em;
+  }
+
+  p.subtitle {
+    color: $uom-muted;
+    font-family: $font-family-sans-serif;
+    font-weight: 300;
+    font-size: 0.66em;
+    letter-spacing: 0.012em;
+    line-height: 1.45;
+    margin: 0 0 2.1em;
+  }
+
+  .quarto-title-authors { margin-top: 0; }
+
+  // Quarto emits .quarto-title-author-name — NOT .author
+  .quarto-title-author-name {
+    color: $uom-navy;
+    font-family: $font-family-sans-serif;
+    font-weight: 700;
+    font-size: 0.62em;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.28em;
+  }
+
+  // Quarto emits .quarto-title-affiliation — NOT .institute
+  .quarto-title-affiliation {
+    color: $uom-muted;
+    font-family: $font-family-sans-serif;
+    font-weight: 300;
+    font-size: 0.5em;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  p.date {
+    color: $uom-brand-500;
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    font-size: 0.44em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 1.35em;
+  }
+}
+
+// ── Slide Titles ─────────────────────────────────────────────────────────────
+.reveal .slides h2 {
+  padding-bottom: 0.26em;
+  // Reserve the top-right corner so long titles wrap before the logos
+  padding-right: 165px;
+  border-bottom: $brand-hairline;
+  margin-bottom: 0.75em;
+}
+
+.reveal .slides h3 {
+  color: $uom-navy;
+  font-family: $font-family-sans-serif;
+  font-weight: 700;
+  font-size: 0.78em;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.35em;
+}
+
+// ── Title Strap ──────────────────────────────────────────────────────────────
+// Pinned across the top of the viewport, full width. Shown on the title slide
+// only, via the `title-active` body class set in _extension.yml's JS. The cyan
+// edge sits on the underside, facing the content.
+.title-strap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: $strap-h;
+  background: $uom-navy;
+  border-bottom: $accent-h solid $csiro-blue;
+  z-index: 50;
+  display: none;
+  pointer-events: none;
+}
+
+body.title-active .title-strap { display: block; }
+
+// ── Logo Overlay ─────────────────────────────────────────────────────────────
+// ONE logo asset on every slide, at one size — no light/dark swapping.
+// This works because the housed mark's tile is #000F46, exactly the strap and
+// section-divider navy: on white the tile reads as the standard lockup, and on
+// navy the tile boundary vanishes, leaving the white crest. Only the title
+// slide differs, and only in size and placement.
+//
+// Caveat: a section divider set to some OTHER dark colour would show the navy
+// tile as a visible square. Stick to #000F46 for dark backgrounds.
+.slide-logos {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 99;
+  pointer-events: none;
+
+  img {
+    display: block;
+    width: auto;
+    height: 52px;
+  }
+}
+
+// Title slide only: same corner as every other slide, just re-centred within
+// the strap and sized up slightly for the cover.
+body.title-active .slide-logos {
+  top: 0;
+  bottom: auto;
+  height: $strap-h;
+  padding-bottom: $accent-h;   // offsets the strap's cyan underside
+  align-items: center;
+
+  img { height: 70px; }
+}
+
+// ── Slide Numbers ────────────────────────────────────────────────────────────
+// Navy on light grounds; white on the strap and on section dividers.
+.reveal .slide-number {
+  background: transparent;
+  color: rgba($uom-navy, 0.55);
+  font-family: $font-family-sans-serif;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+body.dark-slide .reveal .slide-number {
+  color: rgba(#fff, 0.8);
+}
+
+// ── Progress Bar ─────────────────────────────────────────────────────────────
+.reveal .progress {
+  height: 2px;
+  color: $csiro-blue;
+}
+.reveal .progress span { background: $csiro-blue; }
+
+// ── Controls / Footer ────────────────────────────────────────────────────────
+.reveal .controls { display: none; }
+.reveal .footer   { display: none; }
+
+// ── Links ────────────────────────────────────────────────────────────────────
+.reveal a {
+  color: $uom-link;
+  text-decoration: none;
+  border-bottom: 1px solid rgba($uom-link, 0.3);
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    color: $uom-link-hover;
+    border-bottom-color: $uom-link-hover;
+  }
+}
+
+// ── Blockquotes ──────────────────────────────────────────────────────────────
+.reveal blockquote {
+  background: $uom-brand-100;
+  border-left: $accent-h solid $csiro-blue;
+  border-radius: 0 $brand-radius $brand-radius 0;
+  padding: 0.6em 1.1em;
+  width: 96%;
+  box-shadow: none;
+  font-style: normal;
+  font-size: 0.86em;
+  color: $uom-text;
+}
+
+// ── Code ─────────────────────────────────────────────────────────────────────
+.reveal pre {
+  box-shadow: none;
+  border: $brand-hairline;
+  border-radius: $brand-radius;
+  width: 100%;
+}
+
+.reveal pre code {
+  font-family: $font-family-monospace;
+  font-size: 0.74em;
+  line-height: 1.65;
+  padding: 0.8em 1.05em;
+  border-radius: $brand-radius;
+}
+
+.reveal code:not(pre code) {
+  background: $uom-tint;
+  color: $uom-link;
+  padding: 0.08em 0.32em;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+// ── Tables ───────────────────────────────────────────────────────────────────
+.reveal table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8em;
+  font-family: $font-family-sans-serif;
+
+  th {
+    background-color: $uom-navy;
+    color: #fff;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 0.92em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: none;
+  }
+
+  td {
+    padding: 7px 14px;
+    border-bottom: $brand-hairline;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) td { background-color: $uom-tint; }
+
+  tr:hover td {
+    background-color: $uom-brand-200;
+    transition: background 0.12s ease;
+  }
+}
+
+// ── Columns ──────────────────────────────────────────────────────────────────
+.reveal .columns { gap: 2.5em; }
+
+// ── Callouts ─────────────────────────────────────────────────────────────────
+.reveal .callout {
+  border-radius: $brand-radius;
+  font-size: 0.84em;
+  font-family: $font-family-sans-serif;
+}
+
+.reveal .callout-note      { border-left-color: $uom-navy;   .callout-title { background: rgba($uom-navy, 0.06); } }
+.reveal .callout-tip       { border-left-color: $csiro-blue; .callout-title { background: rgba($csiro-blue, 0.07); } }
+.reveal .callout-warning   { border-left-color: #C07C11;     .callout-title { background: rgba(#C07C11, 0.07); } }  // yellow-500
+.reveal .callout-important { border-left-color: #A8101E;     .callout-title { background: rgba(#A8101E, 0.06); } }  // red-700
+
+// ── Rules ────────────────────────────────────────────────────────────────────
+.reveal hr {
+  border: 0;
+  border-top: $brand-hairline;
+  margin: 0.9em 0;
+}
+
+// ── Dark / section-divider slides ────────────────────────────────────────────
+// Usage: ## Section Title {background-color="#000F46" .center}
+.reveal .slides section[data-background-color] {
+  h1, h2, h3, h4 {
+    color: #fff;
+    border-bottom: none;
+    box-shadow: none;
+  }
+
+  // Section headings carry the same cyan rule as the title slide
+  h2 {
+    @include accent-rule(left);
+    margin-bottom: 0.6em;
+  }
+
+  p, li     { color: rgba(#fff, 0.88); }
+  .subtitle { color: rgba(#fff, 0.6); }
+
+  a {
+    color: $uom-kookaburra;
+    border-bottom-color: rgba($uom-kookaburra, 0.4);
+
+    &:hover {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+  }
+
+  code:not(pre code) {
+    background: rgba(#fff, 0.12);
+    color: $uom-kookaburra;
+  }
+
+  blockquote {
+    background: rgba(#fff, 0.08);
+    color: rgba(#fff, 0.9);
+  }
+
+  ul > li::marker,
+  ol > li::marker { color: $uom-kookaburra; }
+}
+
+// ── Inline highlight utility ─────────────────────────────────────────────────
+// Usage: [highlighted text]{.hl}
+.reveal .hl {
+  background: rgba($csiro-blue, 0.15);
+  border-radius: 3px;
+  padding: 0.05em 0.22em;
+  color: $uom-navy;
+}
+
+// ── Figures ──────────────────────────────────────────────────────────────────
+.reveal figure figcaption {
+  color: $uom-muted;
+  font-family: $font-family-sans-serif;
+  font-size: 0.5em;
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: 0.55em;
+}
+
+// ── PDF export (?print-pdf) ──────────────────────────────────────────────────
+// position:fixed collapses in reveal's print layout, so the live overlays are
+// hidden and the JS stamps a copy into each .pdf-page (position: relative).
+// These must win over the base .slide-logos / .title-strap rules.
+body.pdf-export > .slide-logos:not(.pdf-logos),
+body.pdf-export > .title-strap:not(.pdf-strap) {
+  display: none !important;
+}
+
+.pdf-logos {
+  position: absolute !important;
+  top: 24px;
+  right: 28px;
+  bottom: auto;
+  left: auto;
+  height: auto;
+  padding: 0;
+  gap: 14px;
+  justify-content: flex-start;
+}
+
+.pdf-strap {
+  position: absolute !important;
+  display: block !important;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: $strap-h;
+}
+
+// Title page: logos centred in the top strap, sized up to match the live cover.
+.pdf-logos-title {
+  top: 0;
+  bottom: auto;
+  height: $strap-h;
+  padding-bottom: $accent-h;
+  align-items: center;
+
+  img { height: 70px; }
+}
+
+// ── Lists ────────────────────────────────────────────────────────────────────
+.reveal ul > li::marker { color: $csiro-blue; }
+.reveal ol > li::marker { color: $uom-navy; font-weight: 700; }
+
+.reveal ul, .reveal ol { margin-bottom: 0.3em; }
+.reveal li { margin-bottom: 0.3em; }
