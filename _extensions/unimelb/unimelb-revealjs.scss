@@ -212,6 +212,12 @@ body.title-active .title-strap { display: block; }
 //
 // Caveat: a section divider set to some OTHER dark colour would show the navy
 // tile as a visible square. Stick to #000F46 for dark backgrounds.
+//
+// The logos are inline <svg>, not <img src="...">: `quarto use template`
+// installs this extension namespaced under _extensions/<gh-org>/unimelb/, so a
+// hardcoded asset path (correct only for a manual _extensions/unimelb/ copy)
+// would 404. Inline markup has no path to break. See assets/README for how to
+// regenerate it if the source SVGs change.
 .slide-logos {
   position: fixed;
   top: 24px;
@@ -222,7 +228,7 @@ body.title-active .title-strap { display: block; }
   z-index: 99;
   pointer-events: none;
 
-  img {
+  svg {
     display: block;
     width: auto;
     height: 52px;
@@ -238,7 +244,7 @@ body.title-active .slide-logos {
   padding-bottom: $accent-h;   // offsets the strap's cyan underside
   align-items: center;
 
-  img { height: 70px; }
+  svg { height: 70px; }
 }
 
 // ── Slide Numbers ────────────────────────────────────────────────────────────
@@ -470,7 +476,7 @@ body.pdf-export > .title-strap:not(.pdf-strap) {
   padding-bottom: $accent-h;
   align-items: center;
 
-  img { height: 70px; }
+  svg { height: 70px; }
 }
 
 // ── Lists ────────────────────────────────────────────────────────────────────

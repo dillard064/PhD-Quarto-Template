@@ -4,14 +4,18 @@ Quarto RevealJS theme for joint University of Melbourne / CSIRO presentations.
 
 ## Start a new deck
 
-1. Copy the `_extensions/unimelb/` folder into your new project (it must sit at
-   `_extensions/unimelb/` relative to your `.qmd` — the directory name is load-bearing,
-   see below).
-2. Copy `template.qmd` as a starting point, or add this to any `.qmd`'s YAML:
-   ```yaml
-   format: unimelb-revealjs
-   ```
-3. `quarto render your-deck.qmd`
+Recommended — from an empty project folder:
+```bash
+quarto use template dillard064/PhD-Quarto-Template
+```
+This installs the extension and drops a starter `.qmd` (named after the
+folder) in place. Answer "yes" if it asks to trust the extension source.
+
+Manual alternative — copy `_extensions/unimelb/` into your project yourself
+(it must end up at `_extensions/unimelb/` relative to your `.qmd` — the
+directory name is load-bearing, see below), copy `template.qmd` as a starting
+point or add `format: unimelb-revealjs` to any `.qmd`'s YAML, then
+`quarto render your-deck.qmd`.
 
 ## What's in the theme
 
