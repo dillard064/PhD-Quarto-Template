@@ -31,6 +31,14 @@ point or add `format: unimelb-revealjs` to any `.qmd`'s YAML, then
 - **Logos**: one asset, top-right corner, on every slide. No manual placement needed.
 - **PDF export**: open `deck.html?print-pdf` and print to PDF — logos and the
   title strap are handled automatically.
+- **3D embedding plot**: the "Embedding Space (3D)" slide in `template.qmd`
+  is an interactive `plotly` scatter (PCA/UMAP/t-SNE-style point cloud,
+  drag to rotate, scroll to zoom), styled with the theme's brand colours.
+  It's an executed R chunk, so it needs R with the `plotly` package
+  installed to render (`install.packages("plotly")` — pulls in `htmlwidgets`
+  as a dependency). Every other "code" slide in the template just displays
+  code as text and has no such requirement — delete this slide if you don't
+  need a 3D plot.
 
 ## Brand colours
 
