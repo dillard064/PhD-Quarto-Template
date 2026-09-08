@@ -378,7 +378,9 @@ body.dark-slide .reveal .slide-number {
 }
 
 // ── Dark / section-divider slides ────────────────────────────────────────────
-// Usage: ## Section Title {background-color="#000F46" .center}
+// # headings are dark by default (see dark-level1.lua). Add {.no-dark} to a
+// # heading to opt out, or set background-color="#000F46" .center manually
+// on any ## / ### heading for the same treatment.
 .reveal .slides section[data-background-color] {
   h1, h2, h3, h4 {
     color: #fff;

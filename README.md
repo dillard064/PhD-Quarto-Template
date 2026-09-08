@@ -24,10 +24,14 @@ point or add `format: unimelb-revealjs` to any `.qmd`'s YAML, then
   browser opens the deck.
 - **Title slide**: white background, navy strap across the top carrying both
   logos as a single lockup, a cyan accent rule under the title.
-- **Section dividers**: set `background-color="#000F46"` on any `##` heading
-  (`## Section {background-color="#000F46" .center}`) — the logo tile blends
-  into this exact navy, so **stick to `#000F46`** for dark backgrounds rather
-  than picking a different dark colour.
+- **Section dividers**: a top-level heading (`# Section`) is dark navy by
+  default — no attributes needed. Add `{.no-dark}` to a `#` heading to keep
+  it light instead. `##`/`###` headings stay light by default, but you can
+  get the same dark treatment manually on any heading level with
+  `background-color="#000F46"` (e.g. `## Section {background-color="#000F46"
+  .center}`) — the logo tile blends into this exact navy, so **stick to
+  `#000F46`** for dark backgrounds rather than picking a different dark
+  colour.
 - **Logos**: one asset, top-right corner, on every slide. No manual placement needed.
 - **PDF export**: open `deck.html?print-pdf` and print to PDF — logos and the
   title strap are handled automatically.

@@ -19,9 +19,9 @@ Today I will cover:
 
 ---
 
-## Background {background-color="#000F46" .center}
+# Background
 
-<!-- Dark navy section divider. Add .center to vertically centre content. -->
+<!-- Dark navy section divider (automatic for level-1 headings; add {.no-dark} to opt out). -->
 
 ---
 
@@ -72,7 +72,7 @@ $$R^2 = 1 - \frac{\text{SS}_\text{res}}{\text{SS}_\text{tot}}$$
 
 ---
 
-## Methods {background-color="#000F46" .center}
+# Methods
 
 ---
 
@@ -124,7 +124,7 @@ plt.savefig("fig_results.png", dpi=150, bbox_inches="tight")
 
 ---
 
-## Results {background-color="#000F46" .center}
+# Results
 
 ---
 
@@ -203,7 +203,7 @@ plot_ly(
 
 ---
 
-## Discussion {background-color="#000F46" .center}
+# Discussion
 
 ---
 
@@ -249,7 +249,7 @@ Summarise the three or four most important points from your talk.
 
 ---
 
-## Thank You {background-color="#000F46" .center}
+# Thank You
 
 **Author Name**
 

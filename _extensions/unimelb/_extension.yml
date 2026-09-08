@@ -6,6 +6,9 @@ contributes:
   formats:
     revealjs:
       theme: [default, unimelb-revealjs.scss]
+      slide-level: 2
+      filters:
+        - dark-level1.lua
       slide-number: c/t
       show-slide-number: all
       center: false
