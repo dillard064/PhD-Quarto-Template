@@ -32,7 +32,9 @@ point or add `format: unimelb-revealjs` to any `.qmd`'s YAML, then
   .center}`) — the logo tile blends into this exact navy, so **stick to
   `#000F46`** for dark backgrounds rather than picking a different dark
   colour.
-- **Logos**: one asset, top-right corner, on every slide. No manual placement needed.
+- **Logos**: shown on the title slide and the final slide only (whatever slide
+  comes last, e.g. "Thank You"), top-right corner. Content slides stay clean.
+  No manual placement needed.
 - **PDF export**: open `deck.html?print-pdf` and print to PDF — logos and the
   title strap are handled automatically.
 - **3D embedding plot**: the "Embedding Space (3D)" slide in `template.qmd`

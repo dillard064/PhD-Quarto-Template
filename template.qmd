@@ -251,6 +251,8 @@ Summarise the three or four most important points from your talk.
 
 # Thank You
 
+<!-- Logos appear only on the title slide and on whichever slide comes last. -->
+
 **Author Name**
 
 School of Something
@@ -259,4 +261,3 @@ The University of Melbourne
 ✉ author\@unimelb.edu.au &nbsp;·&nbsp; 🔗 [github.com/username](https://github.com/username)
 
 *This research was supported by [funding body / grant number].*
-```

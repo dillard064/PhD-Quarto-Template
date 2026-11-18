@@ -169,11 +169,12 @@ $code-bg:    $uom-tint;
 // ── Slide Titles ─────────────────────────────────────────────────────────────
 .reveal .slides h2 {
   padding-bottom: 0.26em;
-  // Reserve the top-right corner so long titles wrap before the logos
-  padding-right: 165px;
   border-bottom: $brand-hairline;
   margin-bottom: 0.75em;
 }
+
+// Reserve the top-right corner so long titles wrap before the logos
+.reveal .slides section.has-logos h2 { padding-right: 165px; }
 
 .reveal .slides h3 {
   color: $uom-navy;
@@ -204,11 +205,11 @@ $code-bg:    $uom-tint;
 body.title-active .title-strap { display: block; }
 
 // ── Logo Overlay ─────────────────────────────────────────────────────────────
-// ONE logo asset on every slide, at one size — no light/dark swapping.
-// This works because the housed mark's tile is #000F46, exactly the strap and
-// section-divider navy: on white the tile reads as the standard lockup, and on
-// navy the tile boundary vanishes, leaving the white crest. Only the title
-// slide differs, and only in size and placement.
+// Shown on the title slide and the final slide only (the JS marks those
+// sections .has-logos and sets body.logos-active). One asset, no light/dark
+// swapping: the housed mark's tile is #000F46, exactly the strap and
+// section-divider navy, so on navy the tile boundary vanishes and leaves the
+// white crest. The title slide differs only in size and placement.
 //
 // Caveat: a section divider set to some OTHER dark colour would show the navy
 // tile as a visible square. Stick to #000F46 for dark backgrounds.
@@ -227,12 +228,20 @@ body.title-active .title-strap { display: block; }
   gap: 14px;
   z-index: 99;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
 
   svg {
     display: block;
     width: auto;
     height: 52px;
   }
+}
+
+body.logos-active .slide-logos {
+  opacity: 1;
+  visibility: visible;
 }
 
 // Title slide only: same corner as every other slide, just re-centred within
@@ -459,6 +468,9 @@ body.pdf-export > .title-strap:not(.pdf-strap) {
   padding: 0;
   gap: 14px;
   justify-content: flex-start;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none;
 }
 
 .pdf-strap {
